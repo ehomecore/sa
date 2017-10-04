@@ -1,38 +1,39 @@
 #!/bin/bash
-if [[ $USER != 'root' ]]; then
-	echo "Maaf, Anda harus menjalankan ini sebagai root"
-exit
 
-MYIP=$(wget -qO- ipv4.icanhazip.com)
-
-#vps="zvur";
-vps="aneka";
-
-if [[ $vps = "zvur" ]]; then
-	source="http://scripts.gapaiasa.com"
-else
-	source="https://insomnet4u.me/Tumbal"
-
-# go to root
-cd
 
 cd
+
 sed -i '$ i\screen -AmdS limit /root/limit.sh' /etc/rc.local
+
 sed -i '$ i\screen -AmdS ban /root/ban.sh' /etc/rc.local
+
 sed -i '$ i\screen -AmdS limit /root/limit.sh' /etc/rc.d/rc.local
+
 sed -i '$ i\screen -AmdS ban /root/ban.sh' /etc/rc.d/rc.local
+
 echo "0 0 * * * root /usr/local/bin/user-expire" > /etc/cron.d/user-expire
+
 echo "0 0 * * * root /usr/local/bin/user-expire-pptp" > /etc/cron.d/user-expire-pptp
 
+
 cat > /root/ban.sh <<END3
+
 #!/bin/bash
+
 #/usr/local/bin/user-ban
+
 END3
 
+
 cat > /root/limit.sh <<END3
+
 #!/bin/bash
+
 #/usr/local/bin/user-limit
+
 END3
+
+cd /usr/local/bin
 
 cd /usr/local/bin
 wget -O premium-script.tar.gz "https://insomnet4u.me/Tumbal/script/premium-script.tar.gz"
